@@ -5,7 +5,19 @@ Telegram mini App Flask. с офлайн майнингом, бустами и T
 **Telegram Mini App** на Flask: оффлайн-майнинг с бустами, задания-подписки, реферальная система и привязка TON-кошелька (TON Connect).
 
 ##  Фичи
--    Telegram WebApp авторизация
+CMD ["flask", "--app", "backend/app.py", "run", "--host=0.0.0.0", "--port=5000"]
+services:
+  - type: web
+    name: flask-ton-miniapp
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: flask --app backend/app.py run --host=0.0.0.0 --port=5000
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: SECRET_KEY
+        sync: false-    Telegram WebApp авторизация
 -    Привязка TON-кошелька
 -    Оффлайн-майнинг: множество скоростей ×2, ×5, ×10, ×100
 -    Задания-подписки за вознаграждение TON
