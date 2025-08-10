@@ -29,3 +29,35 @@ frontend/
 ├─ webapp.html
 └─ ton_connect_stub.js
 README.md
+# Используем официальный Python
+FROM python:3.11
+
+# Задаём рабочую директорию
+WORKDIR /app
+
+# Копируем зависимости
+COPY requirements.txt .
+
+# Устанавливаем зависимости
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Копируем всё приложение
+COPY . .
+
+# Открываем порт
+EXPOSE 5000
+
+# Запускаем Flask
+CMD ["flask", "--app", "backend/app.py", "run", "--host=0.0.0.0", "--port=5000"]
+services:
+  - type: web
+    name: flask-ton-miniapp
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: flask --app backend/app.py run --host=0.0.0.0 --port=5000
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: SECRET_KEY
+        sync: false
