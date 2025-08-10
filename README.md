@@ -1,2 +1,2 @@
 # Flask-ton-miniapp
-Майниг TON с выплатой.
+Telegram mini App Flask. с офлайн майнингом, бустами и TON- кошелекем
